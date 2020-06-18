@@ -1,1 +1,21 @@
 <%# 注文確認画面 %>
+<h2>注文情報確認</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%# 要確認 %>
+    <% @order_products.each do |order_product| %>
+      <td><%= order_product.name %></td>
+      <td><%= order_product.price %></td>
+      <td><%= order_product.quantity %></td>
+      <td><%= order_product.price * order_product.quantity %></td>
+    <% end %>
+  </tbody>
+</table>

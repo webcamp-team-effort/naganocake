@@ -13,9 +13,9 @@
   <%# 要修正 %>
     <% @order_products.each do |order_product| %>
       <td><%= order_product.name %></td>
-      <td><%= delivery.address %></td>
-      <td><%= delivery.name %></td>
-      <td></td>
+      <td><%= order_product.price %></td>
+      <td><%= order_product.quantity %></td>
+      <td><%= order_product.price * order_product.quantity %></td>
     <% end %>
   </tbody>
 </table>

@@ -15,12 +15,14 @@ class OrdersController < ApplicationController
 
   # 注文履歴詳細
   def show
-    
+    @order = Order.find(params[:id])
+    @order_products = @order.order_products
   end
 
   # 新規注文画面（支払先・配送情報画面）
   def new
     @order = Order.new
+    @order.customer_id = current_customer.id
   end
 
   # 新規注文の作成
