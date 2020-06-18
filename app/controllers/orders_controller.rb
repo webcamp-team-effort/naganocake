@@ -4,12 +4,11 @@ class OrdersController < ApplicationController
     
   end
 
-  # 注文完了画面
+  # 注文完了画面(Viewのみ)
   def finish
-    
   end
 
-  # 注文履歴一覧（お客様単位）
+  # 注文履歴一覧（お客様自身の）
   def index
     
   end
@@ -21,12 +20,14 @@ class OrdersController < ApplicationController
 
   # 新規注文画面（支払先・配送情報画面）
   def new
-
+    @order = Order.new
   end
 
   # 新規注文の作成
   def create
-
+    @customer = Customer.find(current_customer.id)
+    @order = Order.new(order_params)
+    @book.user_id = current_user.id
   end
 
   private

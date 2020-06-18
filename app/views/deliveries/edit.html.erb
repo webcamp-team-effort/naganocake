@@ -1,0 +1,32 @@
+<%# 配送先編集画面 %>
+
+<h1>配送先編集</h1>
+
+<%= form_for(@delivery, url:"/deliveries/#{@delivery.id}") do |f| %>
+
+<%# エラーメッセージ %>
+<% if @delivery.errors.any? %>
+  <h2><%= @delivery.errors.count %> errors prohibited this obj from being saved:</h2>
+    <ul>
+      <% @delivery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+  <div class="field">
+    <h4>郵便番号（ハイフンなし）</h4>
+    <%= f.text_field :postcode %>
+  </div>
+  <div class="field">
+    <h4>住所</h4>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <h4>宛名</h4>
+    <%= f.text_field :name %>
+  </div>
+    <div class ="action">
+      <%= f.submit '編集する', class: 'btn btn-primary btn-block' %>
+    </div>
+<% end %>
