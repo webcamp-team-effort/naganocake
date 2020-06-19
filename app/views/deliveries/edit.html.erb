@@ -2,17 +2,7 @@
 
 <h1>配送先編集</h1>
 
-<%= form_for(@delivery, url:"/deliveries/#{@delivery.id}") do |f| %>
-
-<%# エラーメッセージ %>
-<% if @delivery.errors.any? %>
-  <h2><%= @delivery.errors.count %> errors prohibited this obj from being saved:</h2>
-    <ul>
-      <% @delivery.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-<% end %>
+<%= form_for(@delivery) do |f| %>
 
   <div class="field">
     <h4>郵便番号（ハイフンなし）</h4>

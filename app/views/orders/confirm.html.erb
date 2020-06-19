@@ -10,12 +10,19 @@
     </tr>
   </thead>
   <tbody>
-  <%# 要確認 %>
     <% @order_products.each do |order_product| %>
-      <td><%= order_product.name %></td>
+      <td>
+        <%= attachment_image_tag order.order_product, :image, :size => '50x50',fallback: "no_image.jpg" %>
+        <%= order_product.procuct.name %>
+      </td>
       <td><%= order_product.price %></td>
       <td><%= order_product.quantity %></td>
       <td><%= order_product.price * order_product.quantity %></td>
     <% end %>
   </tbody>
 </table>
+
+<div class="">
+  <%# pathは仮入力 %>
+  <%=link_to "購入を確定する", orders_create_path, class: "btn btn-lg btn-success ml-auto" %>
+</div>

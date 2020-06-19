@@ -1,16 +1,18 @@
 class OrdersController < ApplicationController
   # 注文確認画面
   def confirm
-    
+    @order = 
+    @order_products = 
   end
 
   # 注文完了画面(Viewのみ)
   def finish
   end
 
-  # 注文履歴一覧（お客様自身の）
+  # 注文履歴一覧（顧客自身の）
+  # where（与えられた条件にマッチするレコードをすべて返す）
   def index
-    
+    @orders = Order.where(customer_id:current_customer)
   end
 
   # 注文履歴詳細
@@ -30,6 +32,7 @@ class OrdersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @order = Order.new(order_params)
     @book.user_id = current_user.id
+    redirect_to Something_path
   end
 
   private

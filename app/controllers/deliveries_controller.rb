@@ -28,7 +28,7 @@ class DeliveriesController < ApplicationController
   def destroy
     delivery = Delivery.find(params[:id])
     delivery.destroy
-    redirect_to user_path
+    redirect_to deliveries_path
   end
 
   private
