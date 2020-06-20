@@ -37,9 +37,16 @@
   </tbody>
 </table>
 
-<h3>お支払い方法</h3>
-<p><%= @order.payment_method %></p>
-<h3>お届け先</h3>
-<p><%= @order.send_postcode %></p>
-<p><%= @order.send_address %></p>
-<p><%= @order.send_name %></p>
+<table>
+  <tr>
+    <th>お支払い方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td>
+      <%= @order.send_postcode %><%= @order.send_address %><br>
+      <%= @order.send_name %>
+    </td>
+  </tr>
+</table>

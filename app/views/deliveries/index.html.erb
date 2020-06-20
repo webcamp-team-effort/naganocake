@@ -2,35 +2,35 @@
 <h2>配送先登録/一覧</h2>
 
 <%# 配送先登録 %>
-<%= form_for(@delivery) do |f| %>
-  <div class="field">
+<%= form_for(@delivery, url: {controller:deliveries, action:create }) do |f| %>
+  <div class="form-group">
     <h4>郵便番号（ハイフンなし）</h4>
     <%= f.text_field :postcode, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <h4>住所</h4>
     <%= f.text_field :address, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <h4>宛名</h4>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= f.submit "登録する", class: 'btn btn-success btn-block' %>
+    <%= f.submit "登録する", class: 'btn btn-success' %>
   </div>
 <% end %>
 
-<%# 配送先一覧テーブル %>
+<%# 顧客自身の配送先一覧テーブル %>
 <table class="table">
   <thead>
     <tr>
       <th>郵便番号</th>
       <th>住所</th>
       <th>宛名</th>
-      <th colspan="3"></th>
+      <th colspan="20"></th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +40,7 @@
       <td><%= delivery.name %></td>
       <td>
         <%= link_to "編集する", edit_delivery_path(delivery.id), class: 'btn btn-success' %>
-        <%= link_to "削除する", delivery_path(delivery.id),method: :delete, class: 'btn btn-danger' %> <%# パスを確認 %>
+        <%= link_to "削除する", delivery_path(delivery.id),method: :delete, class: 'btn btn-danger' %>
       </td>
     <% end %>
   </tbody>

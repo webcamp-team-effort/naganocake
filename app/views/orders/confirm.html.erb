@@ -12,8 +12,8 @@
   <tbody>
     <% @order_products.each do |order_product| %>
       <td>
-        <%= attachment_image_tag order.order_product, :image, :size => '50x50',fallback: "no_image.jpg" %>
-        <%= order_product.procuct.name %>
+        <%= attachment_image_tag order_product.product, :image, :size => '50x50',fallback: "no_image.jpg" %>
+        <%= order_product.product.name %>
       </td>
       <td><%= order_product.price %></td>
       <td><%= order_product.quantity %></td>
@@ -22,7 +22,38 @@
   </tbody>
 </table>
 
+<table class="table">
+  <tbody>
+    <tr>
+      <td>送料</td>
+      <td><%= @order.postage %></td>
+    </tr>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @order.total_price - @order.postage %></td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td><%= @order.total_price %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th>お支払い方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td>
+      <%= @order.send_postcode %><%= @order.send_address %><br>
+      <%= @order.send_name %>
+    </td>
+  </tr>
+</table>
+
 <div class="">
   <%# pathは仮入力 %>
-  <%=link_to "購入を確定する", orders_create_path, class: "btn btn-lg btn-success ml-auto" %>
+  <%=link_to "購入を確定する", orders_create_path, method: :post, class: "btn btn-lg btn-success ml-auto" %>
 </div>

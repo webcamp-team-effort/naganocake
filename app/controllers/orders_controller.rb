@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
-  # 注文確認画面
-  def confirm
-    @order = 
-    @order_products = 
-  end
-
   # 注文完了画面(Viewのみ)
   def finish
+  end
+
+  # 注文確認画面
+  def confirm
+    @order = Order.find(params[:id])
   end
 
   # 注文履歴一覧（顧客自身の）
@@ -27,12 +26,13 @@ class OrdersController < ApplicationController
     @order.customer_id = current_customer.id
   end
 
-  # 新規注文の作成
+  # 新規注文の作成(ここでorder_productsも作成)
   def create
     @customer = Customer.find(current_customer.id)
     @order = Order.new(order_params)
-    @book.user_id = current_user.id
-    redirect_to Something_path
+    @order.customer_id = current_customer.id
+    order.save
+    redirect_to orders_finish_path
   end
 
   private

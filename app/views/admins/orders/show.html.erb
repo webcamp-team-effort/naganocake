@@ -43,12 +43,13 @@
       <td><%= order_product.product.name %></td>
       <td><%= order_product.price %></td>
       <td><%= order_product.quantity %></td>
+      <%# 計算修正 %>
       <td><%= order_product.price * order_product.quantity %></td>
       <td>
         <%# 制作ステータスプルダウン %>
-        <%= form_for @order_product do |f| %>
+        <%= form_for @order_product, url: {controller:orders, action:create } do |f| %>
           <%= f.select :status, [["着手不可", "0"], ["制作待ち", "1"], ["制作中", "2"], ["制作完了", "3"]], include_blank: "選択して下さい" %>
-          <%= f.submit '送信'%>
+          <%= f.submit '更新'%>
         <% end %>
       </td>
     <% end %>
