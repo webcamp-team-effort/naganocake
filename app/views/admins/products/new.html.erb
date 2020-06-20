@@ -1,6 +1,6 @@
 <div>商品新規登録</div>
 
-<%= form_for(@product) do |f| %>
+<%= form_for @product, :url => {:action => :create} do |f| %>
   <div class='row'>
     <div class='col-xs-3 col-md-offset-1'>
     　<div class="field">
