@@ -24,11 +24,15 @@
 <%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用　%>
       <tr class="field row">
         <th>税込価格(税抜価格)</th>
-        <th><%= @product.tax_included_price.to_s(:delimited) %>（<%= @tax_included.to_s(:delimited) %>）</th>
+        <th><%= @tax_included.to_s(:delimited) %>（<%= @tax_included.to_s(:delimited) %>）</th>
       </tr>
       <tr class="field row">
         <th>販売ステータス</th>
-        <th><%= @product.on_sale %></th>
+        <% if @product.on_sale == true %>
+	     <td>販売中</td>
+		<% elsif @product.on_sale == false %>
+	     <td>販売停止中</td>
+		<% end %>
       </tr>
     </table>
 
