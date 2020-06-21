@@ -43,8 +43,8 @@
       <td><%= order_product.product.name %></td>
       <td><%= order_product.price %></td>
       <td><%= order_product.quantity %></td>
-      <%# 計算修正 %>
-      <td><%= order_product.price * order_product.quantity %></td>
+      <%# 消費税計算（小数点以下切り捨て） %>
+      <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>
       <td>
         <%# 制作ステータスプルダウン %>
         <%= form_for @order_product, url: {controller:orders, action:create } do |f| %>
@@ -61,7 +61,7 @@
   <tbody>
     <tr>
       <td>商品合計</td>
-      <td><%= order.total_price - order.postage %></td>
+      <td><%= (order.total_price - order.postage) %></td>
     </tr>
       <td>送料</td>
       <td><%= order.postage %></td>

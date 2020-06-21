@@ -12,7 +12,7 @@
 <% end %>
 
 <%# お届け先選択 %>
-<%# 要修正 %>
+<%# 要修正（ラジオボタンフォーム＋form_for） %>
 <h2>お届け先</h2>
 <h4>ご自身の住所</h4>
 
@@ -40,3 +40,6 @@
   </div>
 <% end %>
 
+<div class="">
+  <%=link_to "確認画面へ進む", orders_confirm_path, method: :post, class: "btn btn-lg btn-success ml-auto" %>
+</div>

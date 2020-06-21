@@ -14,8 +14,8 @@
   </thead>
   <tbody>
     <% @orders.each do |order| %>
-      <td><%= order.create_at.strftime('%Y/%m/%d') %></td>
-      <td><%= order.send_postcode + order.send_address + order.send_name %></td>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= (order.send_postcode + order.send_address + order.send_name) %></td>
       <%# each内でのeach? %>
       <td>
         <%= @order_products.each do |order_product| %>

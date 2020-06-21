@@ -17,7 +17,7 @@
       </td>
       <td><%= order_product.price %></td>
       <td><%= order_product.quantity %></td>
-      <td><%= order_product.price * order_product.quantity %></td>
+      <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>
     <% end %>
   </tbody>
 </table>
@@ -30,7 +30,7 @@
     </tr>
     <tr>
       <td>商品合計</td>
-      <td><%= @order.total_price - @order.postage %></td>
+      <td><%= (@order.total_price - @order.postage) %></td>
     </tr>
     <tr>
       <td>請求金額</td>
