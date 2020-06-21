@@ -1,0 +1,74 @@
+<%# 注文履歴詳細（管理者用） %>
+<h2>注文履歴詳細</h2>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>購入者</td>
+      <td><%= @order.customer.name %></td>
+    </tr>
+    <tr>
+      <td>配送先</td>
+      <td><%= "〒" + @order.postcode + " " + @order.address + " " + @order.name %></td>
+    </tr>
+    <tr>
+      <td>支払方法</td>
+      <td><%= @order.payment_method %></td>
+    </tr>
+    <tr>
+      <td>注文ステータス</td>
+      <td>
+        <%= form_for @order do |f| %>
+          <%= f.select :status, [["入金待ち", "0"], ["入金確認", "1"], ["制作中", "2"], ["発送準備中", "3"], ["発送済", "4"]], include_blank: "選択して下さい" %>
+          <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%# 注文商品詳細テーブル %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_products.each do |order_product| %>
+      <td><%= order_product.product.name %></td>
+      <td><%= order_product.price %></td>
+      <td><%= order_product.quantity %></td>
+      <%# 消費税計算（小数点以下切り捨て） %>
+      <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>
+      <td>
+        <%# 制作ステータスプルダウン %>
+        <%= form_for @order_product, url: {controller:orders, action:create } do |f| %>
+          <%= f.select :status, [["着手不可", "0"], ["制作待ち", "1"], ["制作中", "2"], ["制作完了", "3"]], include_blank: "選択して下さい" %>
+          <%= f.submit '更新'%>
+        <% end %>
+      </td>
+    <% end %>
+  </tbody>
+</table>
+
+<%# 合計テーブル %>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>商品合計</td>
+      <td><%= (order.total_price - order.postage) %></td>
+    </tr>
+      <td>送料</td>
+      <td><%= order.postage %></td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td><%= order.total_price %></td>
+    </tr>
+  </tbody>
+</table>

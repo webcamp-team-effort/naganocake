@@ -1,0 +1,45 @@
+<%# 新規注文画面（支払い方法選択＋お届け先選択） %>
+<h2>注文情報入力</h2>
+
+<%# 支払方法選択 %>
+<%# ラジオボタン %>
+<h2>支払方法</h2>
+<%= form_with(model: order, local: true) do |f| %>
+  <%= f.radio_button :payment_method, :0, checked: true %>
+  <%= f.label :payment_method, "クレジットカード", {value: :0, style: "display: inline-block;"} %>
+  <%= f.radio_button :payment_method, :1 %>
+  <%= f.label :payment_method, "銀行振込", {value: :1, style: "display: inline-block;"} %>
+<% end %>
+
+<%# お届け先選択 %>
+<%# 要修正（ラジオボタンフォーム＋form_for） %>
+<h2>お届け先</h2>
+<h4>ご自身の住所</h4>
+
+<h4>登録済住所から選択</h4>
+
+<h4>新しいお届け先</h4>
+<%= form_for(@delivery, url: {controller:deliveries, action:create }) do |f| %>
+  <div class="form-group">
+    <h4>郵便番号（ハイフンなし）</h4>
+    <%= f.text_field :postcode, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <h4>住所</h4>
+    <%= f.text_field :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <h4>宛名</h4>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "登録する", class: 'btn btn-success btn-block' %>
+  </div>
+<% end %>
+
+<div class="">
+  <%=link_to "確認画面へ進む", orders_confirm_path, method: :post, class: "btn btn-lg btn-success ml-auto" %>
+</div>
