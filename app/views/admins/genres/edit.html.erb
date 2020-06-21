@@ -1,0 +1,14 @@
+<h2>ジャンル編集</h2>
+<%= form_for @genre, :url => {:action => :update} do |f| %>
+  <div class='row'>
+    <div class='col-xs-9 col-md-offset-1'>
+    <table class='col-xs-7'>
+      <tr class="field row">
+        <th><%= f.label :ジャンル %></th>
+        <th><%= f.text_field :name %></th>
+        <th><%= f.radio_button :is_actived, :true %>有効</th>
+        <th><%= f.radio_button :is_actived, :false %>無効</th>
+        <th><%= f.submit "変更を保存する", class: 'btn btn-info col-xs-12'%></th>
+      </tr>
+    </table>
+<% end %>

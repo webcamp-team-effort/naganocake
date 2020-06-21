@@ -1,0 +1,34 @@
+<div class="container">
+  <div class='row'>
+    <div class='col-xs-2'>
+	    <table class='col-xs-7'>
+	    	<h4>ジャンル検索</h4>
+		  <% @genres.each do |genre| %>
+			<tr><% if genre.is_actived == true %>
+	  		   <td><%= genre.name %></td>
+	  		   <% end %>
+	  		</tr>
+	    　<% end %>
+    　　</table>
+    </div>
+    <div class='col-xs-8'>
+    　<div class="field">
+      <div class="item-image">
+        <%= attachment_image_tag @product, :image, class: "img-square", fallback: "no_image.jpg", size:"320x180" %>
+      </div>
+      </div>
+    </div>
+    <table>
+      <tr class="field row">
+        <h3><%= @product.name %></h3>
+      </tr>
+      <tr class="field row">
+        <p><%= @product.explanation %></p>
+      </tr>
+<%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用　%>
+      <tr class="field row">
+        <h4>¥<%= @tax_included.to_s(:delimited) %></h4><h6>（税込）</h6>
+      </tr>
+  </table>
+ </div>
+</div>
