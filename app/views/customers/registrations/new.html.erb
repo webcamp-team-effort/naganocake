@@ -1,20 +1,20 @@
 <h2>新規会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: root_path) do |f| %>
 
   <div class="field">
     <%= f.label :名前 %>
-    <%= f.label :姓 %>
+    <%= f.label :（姓） %>
     <%= f.text_field :last_name, autofocus: true %>
-    <%= f.label :名 %>
-    <%= f.text_field :first_name　 %>
+    <%= f.label :（名） %>
+    <%= f.text_field :first_name , autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :フリガナ %>
-    <%= f.label :セイ %>
+    <%= f.label :（セイ） %>
     <%= f.text_field :last_kana_name %>
-    <%= f.label :メイ %>
+    <%= f.label :（メイ） %>
     <%= f.text_field :first_kana_name %>
   </div>
 
@@ -24,27 +24,27 @@
   </div>
   
   <div class="field">
-    <%= f.label :郵便番号(ハイフンなし) %>
-    <%= f.number_field :postcode %>
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postcode %>
   </div>
 
   <div class="field">
     <%= f.label :住所 %>
-    <%= f.text_field :address %>
+    <%= f.text_area :address %>
   </div>
 
   <div class="field">
-    <%= f.label :電話番号(ハイフンなし) %>
-    <%= f.number_field :postcode %>
+    <%= f.label :電話番号（ハイフンなし） %>
+    <%= f.text_field :postcode %>
   </div>
 
   <div class="field">
-    <%= f.label :パスワード(6文字以上) %>
+    <%= f.label :パスワード（6文字以上） %>
     <%= f.password_field :encrypted_password %>
   </div>
 
   <div class="field">
-    <%= f.label :パスワード(確認用) %><br />
+    <%= f.label :パスワード（確認用） %>
     <%= f.password_field :encrypted_password %>
   </div>
 
