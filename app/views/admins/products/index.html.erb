@@ -1,0 +1,38 @@
+<h2>商品一覧</h2>
+
+<div class="product_add col-md-offset-9">
+	<%= link_to '＋', new_admins_product_path, class: "btn-sm btn-primary" %>
+</div>
+
+
+<div class='row'>
+	<div class='col-md-offset-1'>
+	　<table>
+		<tr>
+	  　  <th>商品ID</th>
+	  　  <th>商品名</th>
+	  　  <th>税抜価格</th>
+	  　  <th>ジャンル</th>
+	  　  <th>ステータス</th>
+		</tr>
+	  　<div class="products-box">
+		　<% @products.each do |product| %>
+		　　<tr>
+			  <td><%= product.id %></td>
+	<%#　デザインを変更　アンダーバー追加？ %>
+			  <td><%= link_to  admins_product_path(product.id) do %><%= product.name %><% end %></td>
+			  <td><%= product.tax_included_price %></td>
+			  <td><%= product.genre.name %></td>
+	      　　　　<% if product.on_sale == true %>
+			   <td>販売中</td>
+			  <% elsif product.on_sale == false %>
+			   <td>販売停止中</td>
+			  <% end %>
+			</tr>
+		  <% end %>
+		</div>
+	　</table>
+	<%# kaminari使用　　Bootstrapでデザイン変更するべき？？ %>
+	 <%= paginate @products %>
+	</div>
+</div>
