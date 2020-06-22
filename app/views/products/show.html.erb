@@ -30,5 +30,15 @@
         <h4>¥<%= @tax_included.to_s(:delimited) %></h4><h6>（税込）</h6>
       </tr>
   </table>
+    <div class='col-md-3 col-md-offset-5'>
+      <%= form_for @cart_item, :url => { :controller => :cart_items, :action => :create } do |f| %>
+        <table>
+          <tr>
+            <th><%= f.select :quantity, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"]], include_blank: "選択して下さい" %></th>
+            <th><%= f.submit "カートに入れる", class: 'btn btn-info col-xs-12'%></th>
+          </tr>
+        </table>
+      <% end %>
+    </div>
  </div>
 </div>

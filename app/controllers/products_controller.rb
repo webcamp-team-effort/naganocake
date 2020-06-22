@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-  	@genres = Genre.all
+  @genres = Genre.all
 	@products = Product.where(on_sale: true).page(params[:page]).per(8)
 	@product_all = Product.all
   end
@@ -15,9 +15,9 @@ class ProductsController < ApplicationController
   	@genres = Genre.all
   	@product = Product.find(params[:id])
   	a = @product.tax_included_price.to_f
-	b = 1.1.to_f
-	@tax_included = "#{a*b}".to_i
+  	b = 1.1.to_f
+  	@tax_included = "#{a*b}".to_i
+    @cart_item = CartItem.new
   end
-
 
 end
