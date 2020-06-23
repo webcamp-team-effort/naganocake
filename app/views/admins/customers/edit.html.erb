@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4">
+		</div>
+		<div class="col-xs-4">
+            <% name = @customer.last_name + @customer.first_name %>
+		    <h3><%= name %>さんの会員情報編集</h3>
+		</div>
+		<div class="col-xs-4">
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-2">
+		</div>
+        <div class="col-xs-8">
+            <%= form_for(@customer, url:"/admins/customers/#{@customer.id}") do |customer| %>
+                <div class="container">
+                    <div class='row'>
+                        <div class='col-xs-9'>
+                            <table class='col-xs-7'>
+                                <tr class="field">
+                                    <th>名前</th>
+                                    <th><%= customer.label :（姓）%></th>
+                                    <th><%= customer.text_field :last_name %></th>
+                                    <th><%= customer.label :（名）%></th>
+                                    <th><%= customer.text_field :first_name %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th>フリガナ</th>
+                                    <th><%= customer.label :（セイ） %></th>
+                                    <th><%= customer.text_field :last_kana_name %></th>
+                                    <th><%= customer.label :（メイ） %></th>
+                                    <th><%= customer.text_field :first_kana_name %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th><%= customer.label :郵便番号 %></th>
+                                    <th><%= customer.text_field :postcode %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th><%= customer.label :住所 %></th>
+                                    <th><%= customer.text_field :address %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th><%= customer.label :電話番号 %></th>
+                                    <th><%= customer.text_field :postcode %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th><%= customer.label :メールアドレス %></th>
+                                    <th><%= customer.email_field :email %></th>
+                                </tr>
+                                <tr class="field">
+                                    <th><%= customer.label :会員ステータス %></th>
+                                    <th><%= customer.radio_button :is_actived, :true %>有効</th>
+                                    <th><%= customer.radio_button :is_actived, :false %>無効</th>
+                                </tr>
+                                <%= customer.submit '変更を保存する' , class:"btn btn-primary col-xs-12" %>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-xs-2">
+		</div>
+	</div>
+</div>
