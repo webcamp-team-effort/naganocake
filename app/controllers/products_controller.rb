@@ -14,9 +14,6 @@ class ProductsController < ApplicationController
   def show
   	@genres = Genre.all
   	@product = Product.find(params[:id])
-  	a = @product.tax_included_price.to_f
-  	b = 1.1.to_f
-  	@tax_included = "#{a*b}".to_i
     @cart_item = CartItem.new
   end
 

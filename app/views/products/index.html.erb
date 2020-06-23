@@ -23,7 +23,10 @@
 	      		    <tr>
 	        		  <th><%= link_to  product_path(product.id) do %><%= product.name %><% end %></th>
 	        	    <tr>
-	       			  <th>¥<%= product.tax_included_price.to_s(:delimited) %></th>
+	        	    	<% 	a = product.tax_included_price.to_f
+							b = 1.1.to_f
+							tax_included = "#{a*b}".to_i %>
+	       			  <th>¥<%= tax_included.to_s(:delimited) %></th>
 	       		    </tr>
 	  	       </table>
   	        <% end %>

@@ -27,6 +27,9 @@
       </tr>
 <%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用　%>
       <tr class="field row">
+        <%  a = @product.tax_included_price.to_f
+          b = 1.1.to_f
+          @tax_included = "#{a*b}".to_i %>
         <h4>¥<%= @tax_included.to_s(:delimited) %></h4><h6>（税込）</h6>
       </tr>
   </table>
@@ -34,6 +37,7 @@
       <%= form_for @cart_item, :url => { :controller => :cart_items, :action => :create } do |f| %>
         <table>
           <tr>
+            <%= f.hidden_field :product_id, :value => @product.id %>
             <th><%= f.select :quantity, [["1", "1"], ["2", "2"], ["3", "3"], ["4", "4"]], include_blank: "選択して下さい" %></th>
             <th><%= f.submit "カートに入れる", class: 'btn btn-info col-xs-12'%></th>
           </tr>
