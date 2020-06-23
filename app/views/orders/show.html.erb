@@ -1,4 +1,4 @@
-<%# 注文履歴詳細 %>
+<%# 注文履歴詳細（顧客側） %>
 <h2>注文履歴詳細</h2>
 
 <h4>注文情報</h4>
@@ -57,10 +57,12 @@
   </thead>
   <tbody>
     <% @order_products.each do |order_product| %>
-      <td><%= order_product.name %></td>
-      <td><%= order_product.price %></td>
-      <td><%= order_product.quantity %></td>
-      <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>
+      <tr>
+        <td><%= order_product.name %></td>
+        <td><%= order_product.price %></td>
+        <td><%= order_product.quantity %></td>
+        <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
