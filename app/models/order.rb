@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   def calculation(customer)
     products_price = 0
     customer.cart_items.each do |cart_item|
-      products_price += cart_item.prodcut.tax_included_price * cart_item.quantity
+      products_price += cart_item.product.tax_included_price * cart_item.quantity
     end
     return (products_price * 1.1).floor
   end

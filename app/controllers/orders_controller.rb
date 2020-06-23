@@ -28,8 +28,8 @@ class OrdersController < ApplicationController
   # 注文履歴一覧（顧客自身の）
   # where（与えられた条件にマッチするレコードをすべて返す）
   def index
-    @orders = Order.where(customer_id:current_customer)
-    @order_prodoucts = @order.order_products.all
+    @orders = Order.where(customer_id: current_customer).all
+    @order_products = @orders.order_products
   end
 
   # 注文履歴詳細
@@ -57,10 +57,10 @@ class OrdersController < ApplicationController
     @order.save
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-      @order_products = @order.order_prodoucts.new
+      @order_products = @order.order_products.new
       @order_products.product_id = cart_item.product_id
       @order_products.product.name = cart_item.product.name
-      @order_products.price = cart_item.product.tax_include_price
+      @order_products.price = cart_item.product.tax_included_price
       @order_products.quantity = cart_item.quantity
       @order_products.save
       current_customer.cart_items.destroy_all
