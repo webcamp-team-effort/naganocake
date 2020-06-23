@@ -12,10 +12,12 @@
   </thead>
   <tbody>
     <% @orders.each do |order| %>
-      <td><%= order.created_at %></td>
-      <td><%= order.customer.name %></td>
+    <tr>
+      <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
+      <td><%= order.customer.last_name + order.customer.last_name %></td>
       <td><%= order.order_products.count %></td>
       <td><%= order.status %></td>
+    </tr>
     <% end %>
     <%# 10件ごとにページ切り替え %>
     <%# config/initializers/kaminari_config.rb 入力を確認 %>

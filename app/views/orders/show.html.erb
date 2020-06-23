@@ -35,7 +35,7 @@
     </tr>
     <tr>
       <td>配送料</td>
-      <td><%= @order.posatage %></td>
+      <td><%= @order.postage %></td>
     </tr>
     <tr>
       <td>ご請求額</td>
@@ -58,7 +58,7 @@
   <tbody>
     <% @order_products.each do |order_product| %>
       <tr>
-        <td><%= order_product.name %></td>
+        <td><%= order_product.product.name %></td>
         <td><%= order_product.price %></td>
         <td><%= order_product.quantity %></td>
         <td><%= (order_product.price * 1.1 * order_product.quantity).floor %></td>

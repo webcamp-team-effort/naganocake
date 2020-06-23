@@ -26,10 +26,9 @@ class OrdersController < ApplicationController
   end
 
   # 注文履歴一覧（顧客自身の）
-  # where（与えられた条件にマッチするレコードをすべて返す）
   def index
     @orders = Order.where(customer_id: current_customer).all
-    @order_products = @orders.order_products
+    @order_products = @orders.order_values
   end
 
   # 注文履歴詳細
