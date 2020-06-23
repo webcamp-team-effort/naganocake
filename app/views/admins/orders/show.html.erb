@@ -18,8 +18,8 @@
     <tr>
       <td>注文ステータス</td>
       <td>
-        <%= form_for @order do |f| %>
-          <%= f.select :status, [["入金待ち", "0"], ["入金確認", "1"], ["制作中", "2"], ["発送準備中", "3"], ["発送済", "4"]], include_blank: "選択して下さい" %>
+        <%= form_for @order, url: {controller:orders, action:update } do |f| %>
+          <%= f.select :status, [["入金待ち", "0"], ["入金確認", "1"], ["制作中", "2"], ["発送準備中", "3"], ["発送済", "4"]], selected: "0" %>
           <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
         <% end %>
       </td>
@@ -48,7 +48,7 @@
       <td>
         <%# 制作ステータスプルダウン %>
         <%= form_for @order_product, url: {controller:orders, action:create } do |f| %>
-          <%= f.select :status, [["着手不可", "0"], ["制作待ち", "1"], ["制作中", "2"], ["制作完了", "3"]], include_blank: "選択して下さい" %>
+          <%= f.select :status, [["着手不可", "0"], ["制作待ち", "1"], ["制作中", "2"], ["制作完了", "3"]], selected: "0" %>
           <%= f.submit '更新'%>
         <% end %>
       </td>
