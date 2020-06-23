@@ -16,9 +16,9 @@
         <%= attachment_image_tag order_product.product, :image, class: "img-square", fallback: "no_image.jpg", size:"40x40" %>
         <%= cart_item.product.name %>
       </td>
-      <td><%= cart_item.product.price * 1.1 %></td>
+      <td><%= (cart_item.product.tax_included_price * 1.1).floor %></td>
       <td><%= cart_item.quantity %></td>
-      <td><%= (cart_item.product.price * 1.1 * cart_item.quantity).floor %></td>
+      <td><%= (cart_item.product.tax_included_price * 1.1 * cart_item.quantity).floor %></td>
     <% end %>
   </tbody>
 </table>
@@ -31,6 +31,7 @@
     </tr>
     <tr>
       <td>商品合計</td>
+      <%# orderモデルにて計算式を記述 %>
       <td><%= @order.calculation(@customer) %></td>
     </tr>
     <tr>
@@ -54,12 +55,15 @@
   </tr>
 </table>
 
-<%= form_with(url: orders_create_path, local: true) do |f| %>
-  <%# nameというパラメータを作成し、そこに@user.nameを格納します。 %>
-  <%= hidden_field_tag :calculation, @order.calculation(@customer)  %>
-  <%= hidden_field_tag :payment_method, @order.payment_method %>
-  <%# <%= hidden_field_tag :postage, @order.postage %> %>
-  <%= hidden_field_tag :send_postde, @order.send_code %>
-  <%= hidden_field_tag :send_address, @order.send_address %>
-  <%= hidden_field_tag :send_name, @order.send_name %>
+<%= form_with(model:@order, url: orders_path, local: true) do |f| %>
+  <%# hidden field %>
+  <%# orederの各パラメータ、そこに@order.xxxを格納します。 %>
+  <%# <%= f.hidden_field :calculation, :value => @order.calculation(@customer) %>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+  <%= f.hidden_field :send_postcode, :value => @order.send_postcode %>
+  <%= f.hidden_field :send_address, :value => @order.send_address %>
+  <%= f.hidden_field :send_name, :value => @order.send_name %>
+  <div class="field">
+    <%= f.submit "購入を確定する", class: 'btn btn-success btn-block' %>
+  </div>
 <% end %>

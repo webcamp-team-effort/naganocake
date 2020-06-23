@@ -18,7 +18,7 @@
   </div>
   <%= f.radio_button :order_send_info, "1".to_i %>登録済住所から選択
   <%# f.collection_select(メソッド名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション or HTML属性 or イベント属性]) %>
-  <%= f.collection_select(:delivery_id, @deliveries, :id, :all_address ) %>
+  <%= f.collection_select(:delivery_id, @deliveries, :id, :all_address ) %><br>
 
   <%= f.radio_button :order_send_info, "2".to_i %>新しいお届け先
   <div class="form-group">
