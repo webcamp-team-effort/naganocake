@@ -5,7 +5,7 @@
 	    	<h4>ジャンル検索</h4>
 		  <% @genres.each do |genre| %>
 			<tr><% if genre.is_actived == true %>
-	  		   <td><%= genre.name %></td>
+	  		   <td><%= link_to  products_path(:genre_id => genre.id) do %><%= genre.name %><% end %></td>
 	  		   <% end %>
 	  		</tr>
 	    　<% end %>

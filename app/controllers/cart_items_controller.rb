@@ -7,7 +7,7 @@ class CartItemsController < ApplicationController
 	@cart_item_find = current_customer.cart_items.find_by(product_id: @cart_item.product_id)
     if @cart_item_find
        #@cart_item_find.quantity += @cart_item.quantity
-	   @cart_item_find.quantity.update(quantity: @cart_item_find.quantity + @cart_item.quantity)
+	   @cart_item_find.update(quantity: @cart_item_find.quantity + @cart_item.quantity)
 	else
 		@cart_item.save
     end
@@ -24,8 +24,8 @@ class CartItemsController < ApplicationController
 		redirect_to cart_items_path
 	end
 	def empty
-		cart_item = CartItem.find(params[:id])
-		cart_item.delete_all
+		@cart_items = current_customer.cart_items.all
+		@cart_items.delete_all
 		redirect_to cart_items_path
 	end
 
