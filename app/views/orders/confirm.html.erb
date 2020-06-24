@@ -59,7 +59,6 @@
 <%= form_with(model:@order, url: orders_path, local: true) do |f| %>
   <%# hidden field %>
   <%# orederの各パラメータ、そこに@order.xxxを格納します。 %>
-  <%# <%= f.hidden_field :calculation, :value => @order.calculation(@customer) %>
   <%= f.hidden_field :payment_method, :value => @order.payment_method %>
   <%= f.hidden_field :send_postcode, :value => @order.send_postcode %>
   <%= f.hidden_field :send_address, :value => @order.send_address %>
