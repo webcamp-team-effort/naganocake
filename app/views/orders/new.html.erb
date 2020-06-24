@@ -23,15 +23,15 @@
   <%= f.radio_button :order_send_info, "2".to_i %>新しいお届け先
   <div class="form-group">
     <h4>郵便番号（ハイフンなし）</h4>
-    <%= f.text_field :postcode, class: 'form-control' %>
+    <%= f.text_field :send_postcode, class: 'form-control' %>
   </div>
   <div class="form-group">
     <h4>住所</h4>
-    <%= f.text_field :address, class: 'form-control' %>
+    <%= f.text_field :send_address, class: 'form-control' %>
   </div>
   <div class="form-group">
     <h4>宛名</h4>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :send_name, class: 'form-control' %>
   </div>
 
   <div class="field">

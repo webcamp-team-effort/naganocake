@@ -19,7 +19,7 @@
         <td>注文ステータス</td>
         <td>
           <%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
-            <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "製作中"], ["発送準備中", "発送準備中"], ["発送済", "発送済"]] %>
+            <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "製作中"], ["発送準備中", "発送準備中"], ["発送済み", "発送済み"]] %>
             <%= f.submit "更新", class: "btn btn-primary btn-sm" %>
           <% end %>
         </td>
