@@ -15,8 +15,19 @@
     <tr>
       <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
       <td><%= order.customer.last_name + order.customer.last_name %></td>
-      <td><%= order.order_products.count %></td>
-      <td><%= order.status %></td>
+      <td><%= order.order_products.sum(:quantity) %></td>
+      <td>
+        <% case order.status when "入金待ち" %>
+        <span><%= order.status %></span>
+        <% when "入金確認" %>
+        <span><%= order.status %></span>
+        <% when "製作中" %>
+        <span><%= order.status %></span>
+        <% when "発送準備中" %>
+        <span><%= order.status %></span>
+        <% when "発送済み" %>
+        <% end %>
+      </td>
     </tr>
     <% end %>
     <%# 10件ごとにページ切り替え %>
