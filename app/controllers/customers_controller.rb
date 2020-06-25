@@ -1,9 +1,8 @@
 class CustomersController < ApplicationController
 	def leave
-		customer = Customer.find(params[:id])
-		customer.update(is_actived: false)
-		reset_session
-		redirect_to root_path
+	  @customer = Customer.find(current_customer.id)
+	  @customer.destroy
+      redirect_to root_path
 	end
 	def confirm
 	end

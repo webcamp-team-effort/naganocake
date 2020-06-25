@@ -19,9 +19,9 @@
                 <tr>
                 	<th>顧客ID</th>
                 	<td><%= @customer.id %>
-                    <% if @customer.is_actived == true %>
+                    <% if @customer.deleted_at == nil %>
                         有効会員
-                    <% elsif @customer.is_actived == false  %>
+                    <% else  %>
                         無効会員
                     </td>
                     <% end %>
