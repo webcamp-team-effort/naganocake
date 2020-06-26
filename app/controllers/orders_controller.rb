@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :index, :show, :create, :update, :confirm]
+
   # 注文完了画面(Viewのみ)
   def finish
   end

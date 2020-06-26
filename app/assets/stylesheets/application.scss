@@ -32,8 +32,12 @@ header {
   text-align: center;
 }
 
+.customer_name {
+  margin-top: 20px;
+}
+
 .container-fluid {
-  height: 600px;
+  height: auto;
 }
 
 footer {
@@ -44,7 +48,12 @@ footer {
 float: right;
 }
 
-.bg-twitter {
-  background-color: #55acee;
-  text: #FFF;
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin-top: 60px;
+}
+
+.customer_name {
+  padding-top: 7px;
 }
