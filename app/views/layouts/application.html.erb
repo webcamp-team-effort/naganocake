@@ -5,7 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="./css/bootstrap_button_sns.css">
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -14,23 +13,23 @@
       <div class="container" style="border-bottom: 1px solid black;" >
         <nav class='nav navbar-nav navbar-left'>
           <%= link_to root_path do %>
-            <img alt="Brand" src="/assets/naganocakelogo.png" style="height: 100px;">
+            <img alt="Brand" src="/assets/naganocakelogo.png" style="height: 150px;">
           <% end %>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if customer_signed_in? %>
-              <li>ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</li>
-              <li><%= link_to 'マイページ', customer_path(current_customer) %></li>
-              <li><%= link_to '商品一覧', products_path %></li>
-              <li><%= link_to 'カート', cart_items_path %></li>
-              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+              <li class="nav-list-item customer_name"><h5>ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</h5></li>
+              <li class="nav-list-item"><%= link_to 'マイページ', customer_path(current_customer) %></li>
+              <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+              <li class="nav-list-item"><%= link_to 'カート', cart_items_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
             <% elsif admin_signed_in? %>
-              <li><%= link_to '商品一覧', admins_products_path %></li>
-              <li><%= link_to '会員一覧', admins_customers_path %></li>
-              <li><%= link_to '注文履歴一覧', admins_orders_path %></li>
-              <li><%= link_to 'ジャンル一覧', admins_genres_path %></li>
-              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <li class="nav-list-item"><%= link_to '商品一覧', admins_products_path %></li>
+              <li class="nav-list-item"><%= link_to '会員一覧', admins_customers_path %></li>
+              <li class="nav-list-item"><%= link_to '注文履歴一覧', admins_orders_path %></li>
+              <li class="nav-list-item"><%= link_to 'ジャンル一覧', admins_genres_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
               <div>
                 <form class="nav navbar-nav navbar-right" role="search" style="width: 300px;">
                   <input type="text" class="form-control" placeholder="検索キーワード" style="width: 200px; display: inline;">
@@ -38,9 +37,9 @@
                 </form>
               </div>
             <% else %>
-              <li><%= link_to '商品一覧', products_path %></li>
-              <li><%= link_to '新規登録', new_customer_registration_path %></li>
-              <li><%= link_to 'ログイン', new_customer_session_path %></li>
+              <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+              <li class="nav-list-item"><%= link_to '新規登録', new_customer_registration_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログイン', new_customer_session_path %></li>
             <% end %>
           </ul>
         </nav>
@@ -62,7 +61,7 @@
           </p>
         </div>
         <div class="">
-          <img src="https://df0padvwg331x.cloudfront.net/bp/img/footer/ico_footer_instagram_vol2.png" style="height: 40px; alt="">
+          <img src="https://df0padvwg331x.cloudfront.net/bp/img/footer/ico_footer_instagram_vol2.png" style="height: 40px;">
           <p>ながのCAKE instagram</p>
         </div>
         <div class="footer-copyright">

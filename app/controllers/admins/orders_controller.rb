@@ -1,4 +1,6 @@
 class Admins::OrdersController < ApplicationController
+  before_action :authenticate_admin!, only: [:index, :show, :update]
+
   # 注文履歴一覧を表示（管理者用）
   def index
     # 新しい順に表示するページ分けにする
