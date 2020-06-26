@@ -1,3 +1,23 @@
+<<<<<<< u
 <h1> 管理者画面 </h1>
 
 <h2> 本日の注文件数　<%= @order_count %> 件　</h2>
+=======
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h3 class="font-top">管理者画面</h3>
+    </div>
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="row">
+        <h3>
+          <span class="col-xs-4 font-top">本日の注文件数</span>
+          <span class="col-xs-8">
+            <%= link_to @orders.count, admins_orders_path %>件
+          </span>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> local

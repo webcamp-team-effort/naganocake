@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+	before_action :authenticate_customer!
 	def leave
 		customer = Customer.find(params[:id])
 		customer.update(is_actived: false)
