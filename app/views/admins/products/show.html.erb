@@ -1,31 +1,33 @@
-<div class="container-fluid">
+<div class="container">
   <h2>商品詳細</h2>
   <div class='row'>
     <div class='col-xs-4'>
-      <div class="field">
       <div class="item-image">
-        <%= attachment_image_tag @product, :image, class: "img-square", fallback: "no_image.jpg", size:"320x180" %>
-      </div>
+        <%= attachment_image_tag @product, :image, class: "img-thumbnail", fallback: "no_image.jpg"%>
       </div>
     </div>
-    <table class='col-xs-8'>
+    <table class='col-xs-6'>
       <tr class="field row">
         <th>商品名</th>
         <th><%= @product.name %></th>
       </tr>
+      <tr><th>&nbsp;</th></tr>
       <tr class="field row">
         <th>商品説明</th>
         <th><%= @product.explanation %></th>
       </tr>
+      <tr><th>&nbsp;</th></tr>
       <tr class="field row">
         <th>ジャンル</th>
         <th><%= @product.genre.name %></th>
       </tr>
 <%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用 %>
+      <tr><th>&nbsp;</th></tr>
       <tr class="field row">
         <th>税込価格(税抜価格)</th>
-        <th><%= @tax_included.to_s(:delimited) %>（<%= @tax_included.to_s(:delimited) %>）</th>
+        <th><%= @tax_included.to_s(:delimited) %>（<%= @tax_included.to_s(:delimited) %>）円</th>
       </tr>
+      <tr><th>&nbsp;</th></tr>
       <tr class="field row">
         <th>販売ステータス</th>
         <% if @product.on_sale == true %>
@@ -35,8 +37,8 @@
         <% end %>
       </tr>
     </table>
-    <div class='col-xs-offset-11'>
-      <%= link_to '編集する', edit_admins_product_path(@product), class: "btn-sm btn-primary" %>
-    </div>
   </div>
+      <div class='col-xs-offset-7'>
+      <%= link_to '編集する', edit_admins_product_path(@product), class: "btn-lg btn-primary" %>
+    </div>
 </div>
