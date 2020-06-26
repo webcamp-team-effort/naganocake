@@ -7,7 +7,6 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :explanation, presence: true
   validates :tax_included_price, presence: true
-  validates :image_id, presence: true
 
   attachment :image
 end

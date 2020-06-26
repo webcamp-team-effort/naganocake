@@ -1,6 +1,7 @@
 class Admins::ProductsController < ApplicationController
+	  before_action :authenticate_admin!
 	def new
-		@product = Product.new
+		@product = Product.new 
 	end
 	def index
 		@products = Product.all
@@ -17,13 +18,19 @@ class Admins::ProductsController < ApplicationController
 	end
 	def create
 		@product = Product.new(product_params)
-		@product.save
-		redirect_to admins_product_path(@product)
+		if @product.save
+		   redirect_to admins_product_path(@product)
+	    else
+	  	render "new"
+	    end
 	end
 	def update
 		@product = Product.find(params[:id])
-		@product.update(product_params)
-		redirect_to admins_products_path
+		if @product.update(product_params)
+		   redirect_to admins_products_path
+		else
+	  	   render "edit"
+	    end
 	end
 
 

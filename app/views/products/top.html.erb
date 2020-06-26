@@ -1,6 +1,6 @@
-<div class="container-fluid">
+<div class="container">
   <div class='row'>
-    <div class='col-xs-2 col-xs-offset-1'>
+    <div class='col-xs-2'>
 			<table class="list-group">
 				<h3>ジャンル検索</h3>
 					<% @genres.each do |genre| %>
@@ -15,18 +15,17 @@
 		<div class='col-xs-8'>
 			<div>
 				<div>
-					<img alt="Brand" src="/assets/youkoso.png" style="height: 400px;">
-					<%# <p>ようこそ、ながのCAKEへ！</p>
+					<img alt="Brand" src="/assets/naganocake.png" style="height: 400px;">
+					<p>ようこそ、ながのCAKEへ！</p>
 					<p>このサイトは、ケーキ販売のECサイトになります。</p>
 					<p>会員でない方も商品の閲覧はできますが、</p>
-					<p>購入には会員登録が必要となります。</p> %>
+					<p>購入には会員登録が必要となります。</p>
 				</div>
 			</div>
-		<%# xs-8を変更してcssで変えるべき %>
 			<h2>おすすめ商品</h2>
 				<% @products.each do |product| %>
 					<% if product.on_sale == true %>
-						<table class='col-xs-2'>
+						<table class='col-xs-3'>
 							<tr>
 								<th>
 									<%= link_to  product_path(product.id) do %>
