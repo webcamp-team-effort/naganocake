@@ -1,27 +1,28 @@
-<div class="container">
+<div class="container-fluid">
   <div class='row'>
-    <div class='col-xs-2'>
-	    <table class='col-xs-7'>
-	    	<h4>ジャンル検索</h4>
-		  <% @genres.each do |genre| %>
-			<tr><% if genre.is_actived == true %>
-	  		   <td><%= link_to  products_path(:genre_id => genre.id) do %><%= genre.name %><% end %></td>
-	  		   <% end %>
-	  		</tr>
-	    　<% end %>
-    　　</table>
+    <div class='col-xs-2 col-xs-offset-1'>
+			<table class="list-group">
+				<h3>ジャンル検索</h3>
+				<% @genres.each do |genre| %>
+					<tr>
+						<% if genre.is_actived == true %>
+							<td class="list-group-item"><%= link_to  products_path(:genre_id => genre.id) do %><%= genre.name %><% end %></td>
+						<% end %>
+					</tr>
+				<% end %>
+			</table>
     </div>
     <%# xs-8を変更してcssで変えるべき %>
   <div class='col-xs-8'>
-<% if params[:genre_id] %>
-		<h2><%= @genre.name %>一覧</h2>
-<% else %>
-	<h2>商品一覧</h2>
-<% end %>
+		<% if params[:genre_id] %>
+			<h2><%= @genre.name %>一覧</h2>
+		<% else %>
+			<h2>商品一覧</h2>
+		<% end %>
 	<h4>全<%= @product_all.count %>件</h4>
 	    <% @products.each do |product| %>
 	    	<% if product.on_sale == true %>
-			   <table class='col-xs-2'>
+			  <table class='col-xs-2'>
 	      		    <tr>
 	      			  <th><%= link_to  product_path(product.id) do %><%= attachment_image_tag product, :image, class: "img-square", fallback: "no_image.jpg", size:"160x90" %><% end %></th>
 	      		    </tr>
@@ -36,10 +37,10 @@
 	  	       </table>
   	        <% end %>
   	    <% end %>
-  </div>
- </div>
- <div class='col-md-offset-5'>
-  	<%# kaminari使用　　Bootstrapでデザイン変更するべき？？ %>
-	 <%= paginate @products %>
- </div>
+		</div>
+	</div>
+	<div class='col-md-offset-5'>
+		<%# kaminari使用 Bootstrapでデザイン変更するべき？？ %>
+		<%= paginate @products %>
+	</div>
 </div>

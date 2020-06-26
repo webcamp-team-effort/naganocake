@@ -3,7 +3,7 @@
 <%= form_for @product, :url => {:action => :update} do |f| %>
   <div class='row'>
     <div class='col-xs-3 col-md-offset-1'>
-    　<div class="field">
+      <div class="field">
       <div class="item-image">
         <%= attachment_image_tag @product, :image, class: "img-square", fallback: "no_image.jpg", size:"320x180" %>
       </div>
@@ -42,7 +42,7 @@
   </div>
 <% end %>
 
-<%# 画像プレビュー　%>
+<%# 画像プレビュー %>
 <script>
 $(function(){
     // inputのidから情報の取得

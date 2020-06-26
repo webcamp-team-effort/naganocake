@@ -1,23 +1,24 @@
-<h2>会員の方はこちらからログイン</h2>
+<div class="container-fluid">
+  <h2>会員の方はこちらからログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :パスワード %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
 
-  <%= link_to "=>パスワードを忘れた方はこちら" , new_customer_password_path %>
+    <%= link_to "=>パスワードを忘れた方はこちら" , new_customer_password_path %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  <% end %>
 
-<h2> 登録がお済みでない方　</h2>
-<p><%= link_to "こちら" , new_customer_registration_path %>
-   から新規登録を行なってください</p>
+  <h2>登録がお済みでない方</h2>
+  <p><%= link_to "こちら" , new_customer_registration_path %>から新規登録を行なってください</p>
+</div>

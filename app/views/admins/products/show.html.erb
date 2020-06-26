@@ -1,14 +1,14 @@
-<h2>商品詳細</h2>
-
+<div class="container-fluid">
+  <h2>商品詳細</h2>
   <div class='row'>
-    <div class='col-xs-3 col-md-offset-1'>
-    　<div class="field">
+    <div class='col-xs-4'>
+      <div class="field">
       <div class="item-image">
         <%= attachment_image_tag @product, :image, class: "img-square", fallback: "no_image.jpg", size:"320x180" %>
       </div>
       </div>
     </div>
-    <table class='col-xs-4'>
+    <table class='col-xs-8'>
       <tr class="field row">
         <th>商品名</th>
         <th><%= @product.name %></th>
@@ -21,7 +21,7 @@
         <th>ジャンル</th>
         <th><%= @product.genre.name %></th>
       </tr>
-<%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用　%>
+<%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用 %>
       <tr class="field row">
         <th>税込価格(税抜価格)</th>
         <th><%= @tax_included.to_s(:delimited) %>（<%= @tax_included.to_s(:delimited) %>）</th>
@@ -29,14 +29,14 @@
       <tr class="field row">
         <th>販売ステータス</th>
         <% if @product.on_sale == true %>
-	     <td>販売中</td>
-		<% elsif @product.on_sale == false %>
-	     <td>販売停止中</td>
-		<% end %>
+          <td>販売中</td>
+        <% elsif @product.on_sale == false %>
+          <td>販売停止中</td>
+        <% end %>
       </tr>
     </table>
-   <div class='col-md-1 col-md-offset-9'>
-        <%= link_to '編集する', edit_admins_product_path(@product), class: "btn-sm btn-primary" %>
+    <div class='col-xs-offset-11'>
+      <%= link_to '編集する', edit_admins_product_path(@product), class: "btn-sm btn-primary" %>
     </div>
- 
   </div>
+</div>

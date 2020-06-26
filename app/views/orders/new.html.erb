@@ -1,40 +1,46 @@
 <%# 新規注文画面（支払い方法選択＋お届け先選択） %>
-<h2>注文情報入力</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <h3>注文情報入力</h3>
 
-<%= form_with(url: orders_confirm_path, local: true) do |f| %>
-  <div class="">
-    <h2>支払方法</h2>
-    <%# @order.payment_method %>
-      <%= f.radio_button :payment_method, "0".to_i, :checked => true %>クレジットカード<br>
-      <%= f.radio_button :payment_method, "1".to_i %>銀行振込
-  </div>
+      <%= form_with(url: orders_confirm_path, local: true) do |f| %>
+        <div class="">
+          <h4>支払方法</h4>
+          <%# @order.payment_method %>
+            <%= f.radio_button :payment_method, "0".to_i, :checked => true %>クレジットカード<br>
+            <%= f.radio_button :payment_method, "1".to_i %>銀行振込
+        </div>
 
-  <h2>お届け先</h2>
-  <%# @order.send_postcode + @order.send_address + @order.send_name %>
-  <%= f.radio_button :order_send_info, "0".to_i, :checked => true %>ご自身の住所
-  <div class="">
-    <%= @customer.postcode %><%= @customer.address %><br>
-    <%= @customer.last_name %><%= @customer.first_name %>
-  </div>
-  <%= f.radio_button :order_send_info, "1".to_i %>登録済住所から選択
-  <%# f.collection_select(メソッド名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション or HTML属性 or イベント属性]) %>
-  <%= f.collection_select(:delivery_id, @deliveries, :id, :all_address ) %><br>
+        <h4>お届け先</h4>
+        <%# @order.send_postcode + @order.send_address + @order.send_name %>
+        <%= f.radio_button :order_send_info, "0".to_i, :checked => true %>ご自身の住所
+        <div class="">
+          <%= @customer.postcode %><%= @customer.address %><br>
+          <%= @customer.last_name %><%= @customer.first_name %>
+        </div>
+        <%= f.radio_button :order_send_info, "1".to_i %>登録済住所から選択
+        <%# f.collection_select(メソッド名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション or HTML属性 or イベント属性]) %>
+        <%= f.collection_select(:delivery_id, @deliveries, :id, :all_address ) %><br>
 
-  <%= f.radio_button :order_send_info, "2".to_i %>新しいお届け先
-  <div class="form-group">
-    <h4>郵便番号（ハイフンなし）</h4>
-    <%= f.text_field :send_postcode, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <h4>住所</h4>
-    <%= f.text_field :send_address, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <h4>宛名</h4>
-    <%= f.text_field :send_name, class: 'form-control' %>
-  </div>
+        <%= f.radio_button :order_send_info, "2".to_i %>新しいお届け先
+        <div class="form-group">
+          <h4>郵便番号（ハイフンなし）</h4>
+          <%= f.text_field :send_postcode, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <h4>住所</h4>
+          <%= f.text_field :send_address, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <h4>宛名</h4>
+          <%= f.text_field :send_name, class: 'form-control' %>
+        </div>
 
-  <div class="field">
-    <%= f.submit "確認画面へ進む", class: 'btn btn-success btn-block' %>
+        <div class="field">
+          <%= f.submit "確認画面へ進む", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

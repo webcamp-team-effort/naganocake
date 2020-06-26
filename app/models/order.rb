@@ -2,6 +2,12 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_products, dependent: :destroy
 
+  validates :customer_id, presence: true
+  validates :total_price, presence: true
+  validates :payment_method, presence: true
+  validates :send_postcode, presence: true
+  validates :send_address, presence: true
+  validates :send_name, presence: true
 
   # enum：１つのカラムに指定した複数個の定数を保存できる様にする
   enum payment_method: { "クレジットカード": 0, "銀行振込": 1 }

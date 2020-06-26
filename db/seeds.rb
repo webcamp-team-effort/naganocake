@@ -36,7 +36,7 @@ phone_number: "0120111222"
 )
 Customer.create!(
 last_name:"手越" ,
-first_name: "裕也",
+first_name: "祐也",
 last_kana_name: "テゴシ",
 first_kana_name: "ユウヤ",
 password: "123456",
