@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
-		<div class="col-xs-4 col-xs-offset-4">
-      <h1>マイページ</h1>
+		<div class="col-xs-4 col-xs-offset-4 text-center">
+      <h3>マイページ</h3>
     </div>
 	</div>
 	<div class="row">
-		<div class="col-xs-6 col-xs-offset-1">
+		<div class="col-xs-4 col-xs-offset-4 text-center">
 			<h4>登録情報</h4>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-2 col-xs-offset-2 space">
+		<div class="col-xs-2 col-xs-offset-4 space text-center">
 				<h4><%= link_to "編集する" , edit_customer_path , class:"btn btn-primary" %></h4>
 		</div>
 		<div class="col-xs-2 space">
@@ -18,8 +18,8 @@
 		</div>
 	</div>
 	<div class="row">
-	    <div class="col-xs-6 col-xs-offset-1">
-			<table class='table table-bordered'>
+	    <div class="col-xs-6 col-xs-offset-3">
+			<table class='table table-bordered font'>
 				<tr>
 				    <th>氏名</th>
 				    <th><%= @customer.last_name %>
@@ -58,18 +58,18 @@
 	</div>
 	<div class="container">
 	    <div class="row">
-			<div class="col-xs-3  col-xs-offset-1">
+			<div class="col-xs-2  col-xs-offset-4">
 				<h4> 配送先 </h4>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-2">
 				<%= link_to "一覧を見る" , deliveries_path , class:"btn btn-primary" %>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-3 col-xs-offset-1">
+			<div class="col-xs-2 col-xs-offset-4">
 				<h4> 注文履歴 </h4>
 			</div>
-			<div class="col-xs-3">
+			<div class="col-xs-2">
 			   <%= link_to "一覧を見る" , orders_path , class:"btn btn-primary" %>
 			</div>
 		</div>
