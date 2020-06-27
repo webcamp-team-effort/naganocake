@@ -1,23 +1,27 @@
 class Admins::CustomersController < ApplicationController
 	before_action :authenticate_admin!
 	def index
-<<<<<<< u
-		@customers = Customer.all
-=======
 		@customers = Customer.page(params[:page]).per(10).with_deleted
->>>>>>> local
 	end
 	def show
-		@customer = Customer.find(params[:id])
+		@customer = Customer.with_deleted.find(params[:id])
 	end
 	def edit
-		@customer = Customer.find(params[:id])
+		@customer = Customer.with_deleted.find(params[:id])
+         if @customer.deleted_at == nil
+    		@customer.is_actived = true
+    	 else
+    	    @customer.is_actived = false
+    	 end
 	end
 	def update
-<<<<<<< u
 		@customer = Customer.find(params[:id])
-		@customer.update(customer_params)
-=======
+		@customer = Customer.with_deleted.find(params[:id])
+		if @customer.is_actived == true
+    		@customer.restore
+    	elsif @customer.is_actived == false
+    		@customer.destroy
+		end
 		@customer = Customer.with_deleted.find(params[:id])
 		@customer.update(customer_params)
 		if @customer.is_actived == true
@@ -25,10 +29,9 @@ class Admins::CustomersController < ApplicationController
     	elsif @customer.is_actived == false
     		@customer.destroy
 		end
-		
->>>>>>> local
+	
 		redirect_to admins_customer_path(@customer.id)
-	end
+end
 
     private
 	def customer_params

@@ -24,7 +24,7 @@
 			            <td><%= link_to name ,"/admins/customers/#{customer.id}" , class:"btn btn-primary text-center" %></td>
 			            <td><%= customer.email %></td>
 			            <td>
-			            	<% if customer.is_actived == true %>
+			            	<% if customer.deleted_at == nil %>
 			            		<p>有効</p>
 			            	<% else %>
 			            	    <p>退会済</p>

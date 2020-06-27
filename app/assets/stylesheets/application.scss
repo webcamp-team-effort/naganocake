@@ -16,6 +16,44 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
-.header-margin{
-	margin-bottom:51px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #762f07;
+  background-color: #fffffc;
+}
+
+header {
+  position: relative;
+  width: 90%;
+  padding: 15px 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.customer_name {
+  margin-top: 20px;
+}
+
+.container-fluid {
+  height: auto;
+}
+
+footer {
+  margin-top: 40px;
+}
+
+.footer-copyright{
+float: right;
+}
+
+.nav-list-item {
+  list-style: none;
+  display: inline-block;
+  margin-top: 60px;
+}
+
+.customer_name {
+  padding-top: 7px;
 }

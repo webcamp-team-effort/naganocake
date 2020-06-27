@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :index, :show, :create, :update, :confirm]
+
   # 注文完了画面(Viewのみ)
   def finish
   end
@@ -8,18 +10,18 @@ class OrdersController < ApplicationController
     @order = Order.new
     @customer = current_customer
     @order.payment_method = params[:payment_method].to_i
-    @delivery = Delivery.find(params[:delivery_id])
     @order.postage = 800
     if params[:order_send_info] == "0"
       @order.send_postcode = @customer.postcode
       @order.send_address = @customer.address
       @order.send_name = @customer.last_name + @customer.first_name
     elsif params[:order_send_info] == "1"
+      @delivery = Delivery.find(params[:delivery_id])
       @order.send_postcode = @delivery.postcode
       @order.send_address = @delivery.address
       @order.send_name = @delivery.name
     elsif params[:order_send_info] == "2"
-      @order.send_postcode = params[:postcode]
+      @order.send_postcode = params[:send_postcode]
       @order.send_address = params[:send_address]
       @order.send_name = params[:send_name]
     end
@@ -27,7 +29,7 @@ class OrdersController < ApplicationController
 
   # 注文履歴一覧（顧客自身の）
   def index
-    @orders = Order.where(customer_id: current_customer).all
+    @orders = Order.where(customer_id: current_customer).all.page(params[:page]).per(10).reverse_order
     @order_products = @orders.order_values
   end
 

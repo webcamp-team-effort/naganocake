@@ -1,4 +1,6 @@
 class DeliveriesController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :index, :show, :create, :update, :destroy]
+
   # 配送先一覧＋登録画面
   def index
     @delivery = Delivery.new
@@ -9,6 +11,7 @@ class DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
+    @deliveries = current_customer.deliveries
     if @delivery.save
       redirect_to deliveries_path
     else

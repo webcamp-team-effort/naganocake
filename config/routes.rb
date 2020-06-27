@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get "admins/top" => "admins/homes#top"
 
-  post "customers/leave" => "customers#leave"
+  patch "customers/leave" => "customers#leave"
   get "customers/confirm" => "customers#confirm"
   resources :customers, only:[:show, :edit, :update]
 

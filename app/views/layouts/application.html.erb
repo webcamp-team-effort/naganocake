@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Naganocake</title>
+    <title>ながのCAKE</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <div class="header-margin">
-      <header class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-          <nav class='nav navbar-nav navbar-left' >
-            <span>naganocake</span>
-          </nav>
-          <nav>
-            <ul class="nav navbar-nav navbar-right">
-              <% if customer_signed_in? %>
-                <li><%= link_to 'マイページ', customer_path(current_customer), class: 'glyphicon glyphicon-home home' %></li>
-                <li><%= link_to '商品一覧', products_path, class: 'glyphicon glyphicon-user users' %></li>
-                <li><%= link_to 'カート', cart_items_path, class: 'glyphicon glyphicon-book books'%></li>
-                <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
-              <% elsif admin_signed_in? %>
-                <li><%= link_to '商品一覧', admins_products_path, class: 'glyphicon glyphicon-home home' %></li>
-                <li><%= link_to '会員一覧', admins_customers_path, class: 'glyphicon glyphicon-home home' %></li>
-                <li><%= link_to '注文履歴一覧', admins_orders_path, class: 'glyphicon glyphicon-user users' %></li>
-                <li><%= link_to 'ジャンル一覧', admins_genres_path, class: 'glyphicon glyphicon-book books'%></li>
-                <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
-              <% else %>
-                <li><%= link_to '商品一覧', products_path, class: 'glyphicon glyphicon-home home' %></li>
-                <li><%= link_to '新規登録', new_customer_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
-                <li><%= link_to 'ログイン', new_customer_session_path, class: 'glyphicon glyphicon-log-in sign_in'%></li>
-              <% end %>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </div>
+    <header>
+      <div class="container" style="border-bottom: 1px solid black;" >
+        <nav class='nav navbar-nav navbar-left'>
+          <%= link_to root_path do %>
+            <img alt="Brand" src="/assets/naganocakelogo.png" style="height: 150px;">
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if customer_signed_in? %>
+              <li class="nav-list-item customer_name"><h5>ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</h5></li>
+              <li class="nav-list-item"><%= link_to 'マイページ', customer_path(current_customer) %></li>
+              <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+              <li class="nav-list-item"><%= link_to 'カート', cart_items_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-list-item"><%= link_to '商品一覧', admins_products_path %></li>
+              <li class="nav-list-item"><%= link_to '会員一覧', admins_customers_path %></li>
+              <li class="nav-list-item"><%= link_to '注文履歴一覧', admins_orders_path %></li>
+              <li class="nav-list-item"><%= link_to 'ジャンル一覧', admins_genres_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <div>
+                <form class="nav navbar-nav navbar-right" role="search" style="width: 300px;">
+                  <input type="text" class="form-control" placeholder="検索キーワード" style="width: 200px; display: inline;">
+                  <button type="submit" class="btn btn-default" style="width: 60px; display: inline;">検索</button>
+                </form>
+              </div>
+            <% else %>
+              <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+              <li class="nav-list-item"><%= link_to '新規登録', new_customer_registration_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログイン', new_customer_session_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="container" style="border-top: 1px solid black;">
+        <div class="footer-info-box">
+          <h5>お問い合わせ</h5>
+          <p>
+            ながのCAKE<br>
+            TEL：000-0000-0000 <br>
+            MAIL ：000@00000000.com <br>
+            営業時間：午前10:00～午後18:00 <br>
+            ※年末年始、祝日は定休日となります。
+          </p>
+        </div>
+        <div class="">
+          <img src="https://df0padvwg331x.cloudfront.net/bp/img/footer/ico_footer_instagram_vol2.png" style="height: 40px;">
+          <p>ながのCAKE instagram</p>
+        </div>
+        <div class="footer-copyright">
+          <p>©copyright ながのCAKE All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
