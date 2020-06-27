@@ -1,24 +1,34 @@
-<h2>パスワードを変更する方へ</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :パスワード, "新しいパスワード" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h3>パスワードを変更する方へ</h3>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
 
-  <div class="field">
-    <%= f.label :パスワード（確認用）, "新しいパスワード" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
 
-  <div class="変更する">
-    <%= f.submit "パスワードを変更する" %>
+        <div class="field">
+          <%= f.label :パスワード, "新しいパスワード" %><br />
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :パスワード（確認用）, "新しいパスワード" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+        <div class="変更する">
+          <%= f.submit "パスワードを変更する" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
 

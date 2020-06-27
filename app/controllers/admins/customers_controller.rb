@@ -1,6 +1,7 @@
 class Admins::CustomersController < ApplicationController
+	before_action :authenticate_admin!
 	def index
-		@customers = Customer.with_deleted
+		@customers = Customer.page(params[:page]).per(10).with_deleted
 	end
 	def show
 		@customer = Customer.with_deleted.find(params[:id])
@@ -14,13 +15,21 @@ class Admins::CustomersController < ApplicationController
     	 end
 	end
 	def update
+		@customer = Customer.find(params[:id])
 		@customer = Customer.with_deleted.find(params[:id])
 		if @customer.is_actived == true
     		@customer.restore
     	elsif @customer.is_actived == false
     		@customer.destroy
 		end
+		@customer = Customer.with_deleted.find(params[:id])
 		@customer.update(customer_params)
+		if @customer.is_actived == true
+    		@customer.restore
+    	elsif @customer.is_actived == false
+    		@customer.destroy
+		end
+	
 		redirect_to admins_customer_path(@customer.id)
 end
 
