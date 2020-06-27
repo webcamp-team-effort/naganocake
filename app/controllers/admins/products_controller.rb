@@ -32,6 +32,11 @@ class Admins::ProductsController < ApplicationController
 	  	   render "edit"
 	    end
 	end
+	 def search
+    # application controllerで生成した@qを利用して検索する
+    @q_products = @q.result.page(params[:page]).per(10)
+    render :index
+  	end
 
 
 private

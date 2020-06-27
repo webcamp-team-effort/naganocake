@@ -13,6 +13,7 @@
 				　  <th>ジャンル</th>
 				　  <th>ステータス</th>
 				</tr>
+				<% if @products %>
 			　<div class="products-box">
 				　<% @products.each do |product| %>
 				　　<tr>
@@ -31,6 +32,27 @@
 			　</table>
 			<%# kaminari使用　　Bootstrapでデザイン変更するべき？？ %>
 			<%= paginate @products %>
+		</div>
+	</div>
+</div>
+				<% elsif @q_products %>
+					<% @q_products.each do |product| %>
+					　　<tr>
+							<td><%= product.id %></td>
+							<td><%= link_to  admins_product_path(product.id) do %><%= product.name %><% end %></td>
+							<td><%= product.tax_included_price %></td>
+							<td><%= product.genre.name %></td>
+						　　 <% if product.on_sale == true %>
+								<td>販売中</td>
+							<% elsif product.on_sale == false %>
+								<td>販売停止中</td>
+							<% end %>
+						</tr>
+					<% end %>
+					</div>
+				　</table>
+				<%= paginate @q_products %>
+				<% end %>
 		</div>
 	</div>
 </div>
