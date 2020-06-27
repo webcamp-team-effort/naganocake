@@ -36,8 +36,11 @@ Rails.application.routes.draw do
   root "products#top"
   resources :products, only:[:index, :show]
 
+
   namespace :admins do
-    resources :products, only:[:index, :show, :create, :new, :edit, :update]
+    resources :products, only:[:index, :show, :create, :new, :edit, :update] do
+    get 'search', on: :collection
+  end
   end
 
   namespace :admins do
