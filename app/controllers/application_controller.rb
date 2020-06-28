@@ -4,11 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
+
+
   private
     def set_search_product
       # 検索バー表示のために常に@qを生成する
       # 検索時以外params[:q]はnilだが、空のransackオブジェクト生成の動作になる
       @q = Product.ransack(params[:q])
+      @p = Customer.ransack(params[:q])
     end
 
     #sign in後のredirect先変更

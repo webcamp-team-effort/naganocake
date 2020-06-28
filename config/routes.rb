@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :customers, only:[:show, :edit, :update]
 
   namespace :admins do
-    resources :customers, only:[:index, :show, :edit, :update]
+    resources :customers, only:[:index, :show, :edit, :update]do
+    get 'search', on: :collection
+  end
   end
 
   resources :deliveries, only:[:index, :create, :edit, :update, :destroy]

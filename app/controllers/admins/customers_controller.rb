@@ -31,7 +31,13 @@ class Admins::CustomersController < ApplicationController
 		end
 	
 		redirect_to admins_customer_path(@customer.id)
-end
+		end
+		def search
+		# application controllerで生成した@qを利用して検索する
+		@p_customers = @p.result.page(params[:page]).per(10)
+		render :"admins/customers/index"
+		end
+
 
     private
 	def customer_params
