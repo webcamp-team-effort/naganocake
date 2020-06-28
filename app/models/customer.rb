@@ -2,6 +2,10 @@ class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_paranoid
+  ransacker :full_name do |parent|
+  Arel::Nodes::InfixOperation.new('||',
+    parent.table[:last_name], parent.table[:first_name])
+end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
