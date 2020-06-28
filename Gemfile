@@ -79,3 +79,5 @@ gem 'pry-rails'
 gem 'paranoia'
 
 gem 'ransack'
+
+gem 'carrierwave'
