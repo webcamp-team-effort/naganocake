@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ながのCAKE</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="container" style="border-bottom: 1px solid black;" >
+        <nav class='nav navbar-nav navbar-left'>
+          <%= link_to root_path do %>
+            <img alt="Brand" src="/assets/logo.png" style="height: 150px;">
+          <% end %>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if customer_signed_in? %>
+              <li class="nav-list-item customer_name"><h5>ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</h5></li>
+              <li class="nav-list-item"><%= link_to 'マイページ', customer_path(current_customer) %></li>
+              <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+              <li class="nav-list-item"><%= link_to 'カート', cart_items_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+            <% elsif admin_signed_in? %>
+              <li class="nav-list-item"><%= link_to '商品一覧', admins_products_path %></li>
+              <li class="nav-list-item"><%= link_to '会員一覧', admins_customers_path %></li>
+              <li class="nav-list-item"><%= link_to '注文履歴一覧', admins_orders_path %></li>
+              <li class="nav-list-item"><%= link_to 'ジャンル一覧', admins_genres_path %></li>
+              <li class="nav-list-item"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+            <% else %>
+                    <li class="nav-list-item"><%= link_to '商品一覧', products_path %></li>
+                    <li class="nav-list-item"><%= link_to '新規登録', new_customer_registration_path %></li>
+                    <li class="nav-list-item"><%= link_to 'ログイン', new_customer_session_path %></li>
+            <% end %>
+            <% request.url %>
+              <% if request.url.include?(admins_customers_path) %>
+                    <div>
+                    <%= search_form_for @p, url: search_admins_customers_path, class: "nav navbar-nav navbar-right" do |f| %>
+                    <%= f.search_field :full_name_or_email_cont, autofocus: true, placeholder: "検索キーワード"%>
+                     <%= f.submit class: "btn btn-default" %>
+                     <% end %>
+                    </div>
+              <% elsif request.url.include?(admins_products_path) %>
+                    <div>
+                    <%= search_form_for @q, url: search_admins_products_path, class: "nav navbar-nav navbar-right" do |f| %>
+                    <%= f.search_field :name_or_explanation_cont, autofocus: true, placeholder: "検索キーワード"%>
+                     <%= f.submit class: "btn btn-default" %>
+                     <% end %>
+                    </div>
+              <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+      <div class="container" style="border-top: 1px solid black;">
+        <div class="footer-info-box">
+          <h5>お問い合わせ</h5>
+          <p>
+            ながのCAKE<br>
+            TEL：000-0000-0000 <br>
+            MAIL ：000@00000000.com <br>
+            営業時間：午前10:00～午後18:00 <br>
+            ※年末年始、祝日は定休日となります。
+          </p>
+        </div>
+        <div class="">
+          <img src="https://df0padvwg331x.cloudfront.net/bp/img/footer/ico_footer_instagram_vol2.png" style="height: 40px;">
+          <p>ながのCAKE instagram</p>
+        </div>
+        <div class="footer-copyright">
+          <p>©copyright ながのCAKE All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

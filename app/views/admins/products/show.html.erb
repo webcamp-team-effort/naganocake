@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>商品詳細</h2>
+  <div class='row'>
+    <div class='col-xs-4'>
+      <div class="item-image">
+        <%= attachment_image_tag @product, :image, class: "img-thumbnail", fallback: "no_image.jpg"%>
+      </div>
+    </div>
+    <table class='col-xs-6'>
+      <tr class="field row">
+        <th>商品名</th>
+        <th><%= @product.name %></th>
+      </tr>
+      <tr><th>&nbsp;</th></tr>
+      <tr class="field row">
+        <th>商品説明</th>
+        <th><%= @product.explanation %></th>
+      </tr>
+      <tr><th>&nbsp;</th></tr>
+      <tr class="field row">
+        <th>ジャンル</th>
+        <th><%= @product.genre.name %></th>
+      </tr>
+<%# 税抜き表示なのでtax_included_priceはミスであるがそのまま使用 %>
+      <tr><th>&nbsp;</th></tr>
+      <tr class="field row">
+        <th>税込価格(税抜価格)</th>
+        <th><%= @tax_included.to_s(:delimited) %>（<%= @product.tax_included_price %>）円</th>
+      </tr>
+      <tr><th>&nbsp;</th></tr>
+      <tr class="field row">
+        <th>販売ステータス</th>
+        <% if @product.on_sale == true %>
+          <td>販売中</td>
+        <% elsif @product.on_sale == false %>
+          <td>販売停止中</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+      <div class='col-xs-offset-7'>
+      <%= link_to '編集する', edit_admins_product_path(@product), class: "btn-lg btn-primary" %>
+    </div>
+</div>
