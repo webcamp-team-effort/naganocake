@@ -15,6 +15,7 @@ end
   has_many :orders, dependent: :destroy
 
   validates :email, presence: true
+  validates :email, uniqueness: {conditions: ->{with_deleted}}
   validates :encrypted_password, presence: true
   validates :last_name, presence: true
   validates :first_name, presence: true
